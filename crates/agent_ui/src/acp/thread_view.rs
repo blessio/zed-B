@@ -1010,12 +1010,13 @@ impl AcpThreadView {
         window: &mut Window,
         cx: &mut Context<Self>,
     ) {
-        if let Some(load_err) = err.downcast_ref::<LoadError>() {
-            self.thread_state = ThreadState::LoadError(load_err.clone());
+        let load_error = if let Some(load_err) = err.downcast_ref::<LoadError>() {
+            load_err.clone()
         } else {
-            self.thread_state =
-                ThreadState::LoadError(LoadError::Other(format!("{:#}", err).into()))
-        }
+            LoadError::Other(format!("{:#}", err).into())
+        };
+        self.emit_load_error_telemetry(&load_error);
+        self.thread_state = ThreadState::LoadError(load_error);
         if self.message_editor.focus_handle(cx).is_focused(window) {
             self.focus_handle.focus(window, cx)
         }
@@ -4816,6 +4817,41 @@ impl AcpThreadView {
                     }),
             )
             .into_any_element()
+    }
+
+    fn emit_load_error_telemetry(&self, error: &LoadError) {
+        let (error_kind, message): (&str, SharedString) = match error {
+            LoadError::Unsupported {
+                command,
+                current_version,
+                minimum_version,
+            } => (
+                "unsupported",
+                format!(
+                    "Upgrade {} to work with Zed. Currently using {}, which is version {} (need at least {})",
+                    self.agent.name(),
+                    command,
+                    current_version,
+                    minimum_version
+                )
+                .into(),
+            ),
+            LoadError::FailedToInstall(msg) => ("failed_to_install", msg.clone()),
+            LoadError::Exited { status } => (
+                "exited",
+                format!("Server exited with status {}", status).into(),
+            ),
+            LoadError::Other(msg) => ("other", msg.clone()),
+        };
+
+        let agent_name = self.agent.name();
+
+        telemetry::event!(
+            "Agent Panel Error Shown",
+            agent = agent_name,
+            kind = error_kind,
+            message = message,
+        );
     }
 
     fn render_load_error(
