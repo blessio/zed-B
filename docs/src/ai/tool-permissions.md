@@ -102,9 +102,7 @@ From highest to lowest priority:
 2. **`always_deny`** — Blocks matching actions
 3. **`always_confirm`** — Requires confirmation for matching actions
 4. **`always_allow`** — Auto-approves matching actions
-5. **`default`** — Fallback when nothing matches
-
-The `always_allow_tool_actions` setting bypasses rules 3-5 but not deny rules or built-in security.
+5. **`default`** — Fallback when no regex patterns match
 
 ## Examples
 
