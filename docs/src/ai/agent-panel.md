@@ -160,7 +160,9 @@ Zed's Agent Panel surfaces the `agent.always_allow_tool_actions` setting that, i
 
 You can change that by setting this key to `true` in either your `settings.json` or via the Agent Panel's settings view.
 
-You can also give more granular permissions through the dropdown that appears in the UI whenever the agent requests authorization to run a tool call.
+For more granular control, you can configure per-tool permission rules using regex patterns to auto-approve trusted actions, block dangerous ones, or always require confirmation for sensitive operations. See [Tool Permissions](./tool-permissions.md) for details.
+
+When the agent requests permission for an action, the confirmation dialog includes options to allow or deny once, as well as "Always allow" and "Always deny" options that automatically add the appropriate pattern to your settings.
 
 ### Model Support {#model-support}
 

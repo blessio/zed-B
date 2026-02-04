@@ -12,6 +12,8 @@ It is entirely possible to use Zed, including Zed's AI capabilities, without sha
 
 ## Documentation
 
+- [Tool Permissions](./tool-permissions.md): Configure granular rules to control which agent actions are auto-approved, blocked, or require confirmation.
+
 - [Worktree trust](../worktree-trust.md): How Zed opens files and directories in restricted mode.
 
 - [Telemetry](../telemetry.md): How Zed collects general telemetry data.

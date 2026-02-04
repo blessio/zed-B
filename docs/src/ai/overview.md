@@ -20,6 +20,8 @@ Learn how to get started using AI with Zed and all its capabilities.
 
 - [Tools](./tools.md): Explore the tools that power Zed's built-in agent.
 
+- [Tool Permissions](./tool-permissions.md): Configure granular permission rules for agent tool actions.
+
 - [Model Context Protocol](./mcp.md): Learn about how to configure and use MCP servers.
 
 - [Inline Assistant](./inline-assistant.md): Discover how to use AI to generate inline transformations directly within a file or terminal.
