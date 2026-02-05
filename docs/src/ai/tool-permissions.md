@@ -244,11 +244,7 @@ This bypasses confirmation prompts but `always_deny` patterns and built-in secur
 
 For the `terminal` tool, Zed parses chained commands (e.g., `echo hello && rm file`) to check each sub-command against your patterns.
 
-**Compatible:** sh, bash, zsh, dash, fish, PowerShell 7+, pwsh, cmd, xonsh, csh, tcsh
-
-**Not compatible:** Nushell, Elvish, rc (Plan 9)
-
-For incompatible shells, `always_allow` patterns are disabled—Zed cannot parse their command chaining syntax to verify all sub-commands match. `always_deny` and `always_confirm` patterns still work.
+All supported shells work with tool permission patterns, including sh, bash, zsh, dash, fish, PowerShell 7+, pwsh, cmd, xonsh, csh, tcsh, Nushell, Elvish, and rc (Plan 9).
 
 ## Writing Patterns
 
