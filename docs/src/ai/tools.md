@@ -70,6 +70,20 @@ Edits files by replacing specific text with new content.
 
 Moves or renames a file or directory in the project, performing a rename if only the filename differs.
 
+### `restore_file_from_disk`
+
+Discards unsaved changes in open buffers by reloading file contents from disk. Useful for resetting files to their on-disk state before retrying an edit.
+
+### `save_file`
+
+Saves files that have unsaved changes. Used when files need to be saved before further edits can be made.
+
 ### `terminal`
 
 Executes shell commands and returns the combined output, creating a new shell process for each invocation.
+
+## Other Tools
+
+### `subagent`
+
+Spawns a subagent with its own context window to perform a delegated task. Useful for running parallel investigations, completing self-contained tasks, or performing research where only the outcome matters. Each subagent has access to the same tools as the parent agent.
